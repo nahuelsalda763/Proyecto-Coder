@@ -13,17 +13,25 @@
 
 {% block contenidoQueCambia %}
 
-    <form action="" method="POST">
-    {% csrf_token %}
-    
-    {{mi_formulario}}
-    
-    <button type="submit">enviar</button>
-    
-    </form>
-    
-    <h2>{{mensaje}}</h2>
+{% if mi_formulario.errors %}
 
-{% endblock %}
+<p style="color: red;"> Revise los datos ingresados.</p>
+
+{% endif %}
+
+<form action="" method="POST">
+    {%csrf_token%}
+
+    <table>
+        
+        {{mi_formulario.as_table}}
+        
+        
+        <button type="submit"> ENVIAR</button>
+
+    </table>
+   
+</form>
+{%endblock%}
 </body>
 </html>

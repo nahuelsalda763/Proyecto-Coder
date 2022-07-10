@@ -9,21 +9,23 @@ def index(request):
 def formulario_empleados(request):
 
     if request.method == "POST":
-        
+
         mi_formulario = EmpleadosFormulario(request.POST)
 
-        if mi_formulario.is_valid:
+        if mi_formulario.is_valid():
             datos = mi_formulario.cleaned_data
             empleados = Empleados(nombre = datos["nombre"], edad = datos["edad"], nacionalidad = datos["nacionalidad"])
             empleados.save()
+            
 
-            return render(request, "mi_playground/empleados_formulario.html", {"mensaje": "Empleado agregado con exito! Bienvenido al equipo"})
+            return render(request, "mi_playground/stock_empleados.html", {"mensaje": "Empleado Registrado con exito! Bienvenido al equipo"})
 
     else:
 
         mi_formulario = EmpleadosFormulario()
 
         return render(request, "mi_playground/empleados_formulario.html", {"mi_formulario": mi_formulario})
+
 
 
 
@@ -34,7 +36,7 @@ def formulario_stock(request):
         mi_formulario = StockFormulario(request.POST)
         print(mi_formulario)
         
-        if mi_formulario.is_valid:
+        if mi_formulario.is_valid():
 
             datos = mi_formulario.cleaned_data
             stock = Stock_Diesel(repuesto = datos["repuesto"], marca = datos["marca"], codigo = datos["codigo"])
@@ -67,39 +69,25 @@ def formulario_proveedores(request):
 
 
 
-def busqueda_empleados(request):
-    
-    busqueda_formulario = EmpleadosBusquedaFormulario()
-
-    if request.GET:
-        empleados = Empleados.objects.filter(nombre = busqueda_formulario["criterio"]).all()
-        return render(request, "mi_playground/empleados_busqueda.html", {"busqueda_formulario": busqueda_formulario, "empleados": empleados})
-
-    return render(request, "mi_playground/empleados_busqueda.html", {"busqueda_formulario": busqueda_formulario})
-
-
-
-def busqueda_stock(request):
+def formulario_busqueda(request):
     busqueda_formulario = StockBusquedaFormulario()
 
     if request.GET:
-        stock = Stock_Diesel.objects.filter(codigo = busqueda_formulario["criterio"]).all()
-        return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario, "stock": stock})
+        stock = Stock_Diesel.objects.filter(codigo=busqueda_formulario["criterio"]).all()
+        return render(request, "mi_playground/stock_busqueda.html", {"formulario_busqueda": formulario_busqueda, "stock": stock})
 
-    return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario})
+    return render(request, "mi_playground/stock_busqueda.html", {"formulario_busqueda": formulario_busqueda})
 
+def buscar(request):
+    if request.GET["codigo"]:
 
+        codigo = request.GET["codigo"]
+        stock = Stock_Diesel.objects.filter(codigo_icontains=codigo)
 
-def busqueda_proveedores(request):
-    busqueda_formulario = ProveedoresFormulario
+        return render(request, "mi_playground/busqueda_stock", { "codigo":codigo} )
+    else:
+        respuesta = "no ingresaste ningun dato"
 
-    if request.GET:
-
-        proveedor = Proveedores.objects.filter(proveedor = busqueda_formulario["criterio"]).all()
-        return render(request, "mi_playground/proveedor_busqueda.html", {"busqueda_formulario": busqueda_formulario, "proveedor": proveedor })
-
-    return render(request, "mi_playground/proveedor_busqueda.html", {"busqueda_formulario": busqueda_formulario})
-
-    
+        return HttpResponse(respuesta)    
 
 # Create your views here.

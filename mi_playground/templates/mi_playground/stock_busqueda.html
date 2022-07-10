@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>BUSQUEDA DE STOCK POR CODIGO</h1>
+
+{% extends "mi_playground/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h3>Podes Buscar si tenemos un repuesto por su codigo</h3>
+
+    <form action="/mi_codigor/buscar/" method="GET">
+
+        <input type="text" name="codigo" id="codigo">
+
+        <input type="submit" value="Buscar">
+
+
+
+
+    </form>
+
+    
+
+    {% if cursos %}
+
+    <p>Estamos buscando el: {{codigo}}</p>
+
+    <ul>
+	{% for codigo in formulario_stock %}
+		<li> {{codigo.marca}} </li>
+		<li> {{codigo.repuesto}} </li>
+	{% endfor %}
+
+    </ul>
+
+    {% endif %}
+
+
+
+{% endblock %}
+</body>
+</html>
