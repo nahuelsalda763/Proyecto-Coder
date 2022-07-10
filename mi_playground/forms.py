@@ -15,13 +15,8 @@ class ProveedoresFormulario(forms.Form):
     respuesto_comprado = forms.CharField(max_length=40)
     proveedor = forms.CharField(max_length=40)
 
-class EmpleadosBusquedaFormulario(forms.Form):
-    criterio = forms.CharField()
 
 class StockBusquedaFormulario(forms.Form):
     criterio = forms.CharField()
-
-class ProveedoresBusquedaFormulario(forms.Form):
-    criterio = forms.CharField
 
     

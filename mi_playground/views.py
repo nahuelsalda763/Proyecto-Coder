@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from mi_playground.models import Empleados, Stock_Diesel, Proveedores
-from mi_playground.forms import EmpleadosBusquedaFormulario, EmpleadosFormulario, StockBusquedaFormulario, StockFormulario, ProveedoresFormulario
+from mi_playground.forms import EmpleadosFormulario, StockBusquedaFormulario, StockFormulario, ProveedoresFormulario
 
 def index(request):
     return render(request,"mi_playground/index.html", {})
@@ -74,20 +74,18 @@ def formulario_busqueda(request):
 
     if request.GET:
         stock = Stock_Diesel.objects.filter(codigo=busqueda_formulario["criterio"]).all()
-        return render(request, "mi_playground/stock_busqueda.html", {"formulario_busqueda": formulario_busqueda, "stock": stock})
+        return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario, "stock": stock})
 
-    return render(request, "mi_playground/stock_busqueda.html", {"formulario_busqueda": formulario_busqueda})
+    return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario})
 
-def buscar(request):
-    if request.GET["codigo"]:
+# def buscar(request):
+#     if request.GET["cod"]:
 
-        codigo = request.GET["codigo"]
-        stock = Stock_Diesel.objects.filter(codigo_icontains=codigo)
+#         codigo = request.GET["cod"]
+#         stock = Stock_Diesel.objects.filter(codigo__icontains=codigo)
 
-        return render(request, "mi_playground/busqueda_stock", { "codigo":codigo} )
-    else:
-        respuesta = "no ingresaste ningun dato"
+#         return render(request, "mi_playground/busqueda_stock", { "codigo": codigo } )
+#     else:
+#         respuesta = "no ingresaste ningun dato"
 
-        return HttpResponse(respuesta)    
-
-# Create your views here.
+#         return HttpResponse(respuesta)    

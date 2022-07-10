@@ -4,49 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buscador de Repuestos</title>
 </head>
 <body>
 
 <h1>BUSQUEDA DE STOCK POR CODIGO</h1>
 
-{% extends "mi_playground/padre.html" %}
-
-{% load static %}
-
-{% block contenidoQueCambia %}
-
-    <h3>Podes Buscar si tenemos un repuesto por su codigo</h3>
-
-    <form action="/mi_codigor/buscar/" method="GET">
-
-        <input type="text" name="codigo" id="codigo">
-
-        <input type="submit" value="Buscar">
 
 
 
+<form action="" method="GET">
+ 
+    {{busqueda_formulario}}
+    <button type="submit">Buscar</button>
 
-    </form>
+</form>
 
-    
-
-    {% if cursos %}
-
-    <p>Estamos buscando el: {{codigo}}</p>
-
+{% if busqueda_formulario %}
     <ul>
-	{% for codigo in formulario_stock %}
-		<li> {{codigo.marca}} </li>
-		<li> {{codigo.repuesto}} </li>
-	{% endfor %}
-
+        {% for articulo in busqueda_formulario %}
+            <li>{{articulo.codigo}}</li>   
+        {% endfor %}
     </ul>
+{% else %}
+    <h1> No hay cursos con ese criterio !!</h1>
 
-    {% endif %}
+{% endif %}
 
 
 
-{% endblock %}
 </body>
 </html>
