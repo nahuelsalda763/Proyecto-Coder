@@ -13,16 +13,18 @@
     {{busqueda_formulario}}
     <button type="submit">Buscar</button>
 </form>
- 
 
-    {% if resultado %}
-        <ul>
-            {% for stock in resultado %}
-                <li>Del codigo: {{stock.codigo}}, tenemos {{stock.cantidad}} unidades</li>                  
+    {% if busqueda_formulario.criterio != null %}
+        {% if resultado %}
+            <ul>
+            {% for repuesto in resultado %}
+                <li>Del codigo: {{repuesto.codigo}}, tenemos {{repuesto.cantidad}} unidades</li>   
+               
             {% endfor %}
-        </ul>
-    {% else %}
-        <h1> No tenemos stock de dicho repuesto !!</h1>
+            </ul>
+        {% else %}
+            <h1>No tenemos stock del repuesto que buscas</h1>
+        {% endif %}
     {% endif %}
 
 

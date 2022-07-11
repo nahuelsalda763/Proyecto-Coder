@@ -73,6 +73,7 @@ def formulario_busqueda(request):
     if request.GET:
         resultado = Stock_Diesel.objects.filter(codigo=request.GET["criterio"]).all()
 
+
     else:
         resultado = []
 
