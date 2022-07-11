@@ -18,8 +18,7 @@
     {% if resultado %}
         <ul>
             {% for stock in resultado %}
-                <li>{{stock.codigo}}</li>   
-                <li>{{stock.cantidad}}</li> 
+                <li>Del codigo: {{stock.codigo}}, tenemos {{stock.cantidad}} unidades</li>                  
             {% endfor %}
         </ul>
     {% else %}
