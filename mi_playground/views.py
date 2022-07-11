@@ -39,7 +39,7 @@ def formulario_stock(request):
         if mi_formulario.is_valid():
 
             datos = mi_formulario.cleaned_data
-            stock = Stock_Diesel(repuesto = datos["repuesto"], marca = datos["marca"], codigo = datos["codigo"])
+            stock = Stock_Diesel(repuesto = datos["repuesto"], marca = datos["marca"], codigo = datos["codigo"], cantidad = datos["cantidad"])
             stock.save()
 
             return render(request, "mi_playground/stock_formulario.html", {"mensaje": "Mercaderia ingresada con exito!"})
@@ -67,16 +67,30 @@ def formulario_proveedores(request):
         mi_formulario = ProveedoresFormulario()
         return render(request, "mi_playground/proveedores_formulario.html", {"mi_formulario": mi_formulario})
 
-
-
 def formulario_busqueda(request):
     busqueda_formulario = StockBusquedaFormulario()
 
     if request.GET:
-        stock = Stock_Diesel.objects.filter(codigo=busqueda_formulario["criterio"]).all()
-        return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario, "stock": stock})
+        resultado = Stock_Diesel.objects.filter(codigo=request.GET["criterio"]).all()
 
-    return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario})
+    else:
+        resultado = []
+
+    return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario, "resultado": resultado})   
+
+# def formulario_busqueda(request):
+#     busqueda_formulario = StockBusquedaFormulario()
+
+#     if request.GET:
+#         resultado = Stock_Diesel.objects.filter(codigo=busqueda_formulario["criterio"]).all()
+#         # return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario, "stock": stock})
+#     else:
+#         resultado = []
+
+#     return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario})
+
+
+#prueba 2
 
 # def buscar(request):
 #     if request.GET["cod"]:

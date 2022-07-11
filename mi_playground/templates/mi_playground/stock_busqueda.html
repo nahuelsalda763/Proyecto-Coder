@@ -4,33 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Repuestos</title>
+    <title>Document</title>
 </head>
 <body>
-
-<h1>BUSQUEDA DE STOCK POR CODIGO</h1>
-
-
-
+<h1> Busqueda de Stock por codigo</h1>
 
 <form action="" method="GET">
- 
     {{busqueda_formulario}}
     <button type="submit">Buscar</button>
-
 </form>
+ 
 
-{% if busqueda_formulario %}
-    <ul>
-        {% for articulo in busqueda_formulario %}
-            <li>{{articulo.codigo}}</li>   
-        {% endfor %}
-    </ul>
-{% else %}
-    <h1> No hay cursos con ese criterio !!</h1>
-
-{% endif %}
-
+    {% if resultado %}
+        <ul>
+            {% for stock in resultado %}
+                <li>{{stock.codigo}}</li>   
+                <li>{{stock.cantidad}}</li> 
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1> No tenemos stock de dicho repuesto !!</h1>
+    {% endif %}
 
 
 </body>

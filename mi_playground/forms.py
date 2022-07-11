@@ -10,6 +10,7 @@ class StockFormulario(forms.Form):
     repuesto = forms.CharField(max_length=40)
     marca = forms.CharField(max_length=40)
     codigo = forms.CharField(max_length=40) 
+    cantidad = forms.IntegerField()
 
 class ProveedoresFormulario(forms.Form):
     respuesto_comprado = forms.CharField(max_length=40)

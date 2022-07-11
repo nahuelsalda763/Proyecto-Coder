@@ -11,7 +11,8 @@ class Empleados(models.Model):
 class Stock_Diesel(models.Model):
     repuesto = models.CharField(max_length=40)
     marca = models.CharField(max_length=40)
-    codigo = models.CharField(max_length=40) 
+    codigo = models.CharField(max_length=40)
+    cantidad = models.IntegerField() 
 
 class Proveedores(models.Model):
     respuesto_comprado = models.CharField(max_length=40)
