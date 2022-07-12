@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verificacion de Stock</title>
 </head>
 <body>
+<body background="fondo1.jpg" bgcolor="FFCECB"></body>
+    
 <h1> Busqueda de Stock por codigo</h1>
 
 <form action="" method="GET">
@@ -14,19 +16,29 @@
     <button type="submit">Buscar</button>
 </form>
 
-    {% if busqueda_formulario.criterio != null %}
-        {% if resultado %}
-            <ul>
-            {% for repuesto in resultado %}
-                <li>Del codigo: {{repuesto.codigo}}, tenemos {{repuesto.cantidad}} unidades</li>   
+{% if busqueda_formulario.criterio != null %}
+    {% if resultado %}
+        <ul>
+        {% for repuesto in resultado %}
+            <li>Del codigo: {{repuesto.codigo}}, tenemos {{repuesto.cantidad}} unidades</li>   
                
-            {% endfor %}
+        {% endfor %}
             </ul>
-        {% else %}
-            <h1>No tenemos stock del repuesto que buscas</h1>
-        {% endif %}
+    
     {% endif %}
+{% endif %}
 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+            <ul class="list-inline mb-2">
+                <li class="list-inline-item"><a href="/empleados">Ingresar nuevos Empleados</a></li>
+                <li class="list-inline-item"><a href="/stock">Ingresar nuevo Stock</a></li>
+                <li class="list-inline-item"><a href="/proveedores">Ingresar nuevas compras a proveedores</a></li>
+                
+
+          
+            </ul>
 
 </body>
 </html>

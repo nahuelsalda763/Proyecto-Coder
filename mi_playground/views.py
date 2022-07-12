@@ -4,7 +4,7 @@ from mi_playground.models import Empleados, Stock_Diesel, Proveedores
 from mi_playground.forms import EmpleadosFormulario, StockBusquedaFormulario, StockFormulario, ProveedoresFormulario
 
 def index(request):
-    return render(request,"mi_playground/index.html", {})
+    return render(request,"mi_playground/padre.html", {})
 
 def formulario_empleados(request):
 
@@ -76,7 +76,7 @@ def formulario_busqueda(request):
 
     else:
         resultado = []
-
+        
     return render(request, "mi_playground/stock_busqueda.html", {"busqueda_formulario": busqueda_formulario, "resultado": resultado})   
 
 # def formulario_busqueda(request):
