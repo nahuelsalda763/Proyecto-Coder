@@ -11,7 +11,7 @@ def formulario_empleados(request):
     if request.method == "POST":
 
         mi_formulario = EmpleadosFormulario(request.POST)
-
+        print(mi_formulario)
         if mi_formulario.is_valid():
             datos = mi_formulario.cleaned_data
             empleados = Empleados(nombre = datos["nombre"], edad = datos["edad"], nacionalidad = datos["nacionalidad"])
