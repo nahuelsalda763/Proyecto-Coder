@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Stock</title>
 </head>
 <body>
     {% extends "mi_playground/padre.html" %}
@@ -13,25 +13,18 @@
 
 {% block contenidoQueCambia %}
 
-{% if mi_formulario.errors %}
 
-<p style="color: red;"> Revise los datos ingresados.</p>
+    <form action="" method="POST">
+    {% csrf_token %}
+    
+    {{mi_formulario}}
+    
+    <button type="submit">enviar</button>
+    
+    </form>
+    
+    <h2>{{mensaje}}</h2>
 
-{% endif %}
-
-<form action="" method="POST">
-    {%csrf_token%}
-
-    <table>
-        
-        {{mi_formulario.as_table}}
-        
-        
-        <button type="submit"> ENVIAR</button>
-
-    </table>
-   
-</form>
-{%endblock%}
+{% endblock %}
 </body>
 </html>

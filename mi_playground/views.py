@@ -18,15 +18,13 @@ def formulario_empleados(request):
             empleados.save()
             
 
-            return render(request, "mi_playground/stock_empleados.html", {"mensaje": "Empleado Registrado con exito! Bienvenido al equipo"})
+            return render(request, "mi_playground/empleados_formulario.html", {"mensaje": "Empleado Registrado con exito! Bienvenido al equipo"})
 
     else:
 
         mi_formulario = EmpleadosFormulario()
 
         return render(request, "mi_playground/empleados_formulario.html", {"mi_formulario": mi_formulario})
-
-
 
 
 def formulario_stock(request):
